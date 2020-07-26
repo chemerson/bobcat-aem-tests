@@ -1,12 +1,11 @@
-package com.cognifide.qa.bb.aem.tests.login;
+package com.cognifide.qa.bb.aem.tests.siteadmin;
 
 import com.applitools.eyes.selenium.Eyes;
 import com.applitools.eyes.selenium.fluent.Target;
 import com.applitools.eyesconfig;
-import com.cognifide.qa.bb.aem.core.api.AemActions;
-import com.cognifide.qa.bb.aem.tests.pages.TestPage;
+import com.cognifide.qa.bb.aem.tests.AbstractAemAuthorTest;
+import com.cognifide.qa.bb.aem.tests.pages.ProductionPage;
 import com.cognifide.qa.bb.api.actions.ActionException;
-import com.cognifide.qa.bb.api.actions.ActionsController;
 import com.cognifide.qa.bb.junit5.guice.Modules;
 import com.cognifide.qa.bb.modules.BobcatRunModule;
 import com.cognifide.qa.bb.page.BobcatPageFactory;
@@ -15,7 +14,6 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
@@ -24,12 +22,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Modules(BobcatRunModule.class)
 @Epic("AEM 6.4 Base Tests")
-@Feature("Login to AEM")
-@Disabled
-public class AuthorizationTest {
-
-  @Inject
-  private ActionsController controller;
+@Feature("Production Website Test")
+public class productionWebsite extends AbstractAemAuthorTest {
 
   @Inject
   private BobcatPageFactory bobcatPageFactory;
@@ -38,26 +32,30 @@ public class AuthorizationTest {
   private WebDriver webDriver;
 
   @Test
-  @Story("Login to AEM and open Test page")
-  @Description("Login to author instance and open test page")
-  public void loginTest() throws ActionException {
+  @Story("Production test")
+  @Description("Click on prod homepage link")
+  public void createPageActionTest() throws ActionException {
 
     WebDriver driver = ((EventFiringWebDriver)webDriver).getWrappedDriver();
 
     Eyes eyes = new Eyes();
     eyes = eyesconfig.set(eyes);
 
-    eyes.open(driver, "AEM", "Login to AEM");
+    eyes.open(driver, "AEM", "Click on prod homepage link");
 
-    TestPage testpage = bobcatPageFactory.create("/content/we-retail/us/en.html", TestPage.class);
-    controller.execute(AemActions.LOG_IN);
+    ProductionPage prodPage = bobcatPageFactory.create("https://www.pnc.com", ProductionPage.class);
+    assertTrue(prodPage.open().isDisplayed());
+    prodPage.open();
 
-    eyes.check("AEM Login Page", Target.window().fully());
+    eyes.check("Step 1", Target.window());
 
-    assertTrue(testpage.open().isDisplayed());
+    prodPage.clickIRA();
 
-    eyes.check("AEM Test Page", Target.window().fully());
+    eyes.check("Step 2", Target.window());
 
-    eyes.close();
+    eyes.closeAsync();
+
+
   }
+
 }
