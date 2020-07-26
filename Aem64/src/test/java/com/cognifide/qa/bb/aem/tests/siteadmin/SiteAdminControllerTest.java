@@ -1,8 +1,5 @@
 package com.cognifide.qa.bb.aem.tests.siteadmin;
 
-import com.applitools.eyes.selenium.Eyes;
-import com.applitools.eyes.selenium.fluent.Target;
-import com.eyestests.eyesconfig;
 import com.cognifide.qa.bb.aem.core.api.AemActions;
 import com.cognifide.qa.bb.aem.core.pages.sling.SlingPageData;
 import com.cognifide.qa.bb.aem.tests.AbstractAemAuthorTest;
@@ -20,8 +17,6 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -44,8 +39,6 @@ public class SiteAdminControllerTest extends AbstractAemAuthorTest {
   @Inject
   private BobcatPageFactory bobcatPageFactory;
 
-  @Inject
-  private WebDriver webDriver;
 
   @Test
   @Story("Create test page from sites.html")
@@ -53,24 +46,17 @@ public class SiteAdminControllerTest extends AbstractAemAuthorTest {
   @Disabled
   public void createPageActionTest() throws ActionException {
 
-    WebDriver driver = ((EventFiringWebDriver)webDriver).getWrappedDriver();
-
-    Eyes eyes = new Eyes();
-    eyes = eyesconfig.set(eyes);
-
-    eyes.open(driver, "AEM", "Site Admin Tests");
 
     TestPage testPage = bobcatPageFactory.create(FULL_PAGE_PATH + ".html", TestPage.class);
     testPage.setTitle(PAGE_TO_CREATE_TITLE);
-    eyes.check("Step 1", Target.window().fully());
+
     assertTrue(testPage.open().isNotAvailable());
 
     SitesPage sitesPage = bobcatPageFactory.create(SITES_PAGE_PATH, SitesPage.class);
     sitesPage.open().createPage(PAGE_TO_CREATE_TEMPLATE, PAGE_TO_CREATE_TITLE, PAGE_TO_CREATE_NAME);
-    eyes.check("Step 2", Target.window().fully());
+
     assertTrue(testPage.open().isDisplayed());
 
-    eyes.close();
   }
 
   @AfterEach

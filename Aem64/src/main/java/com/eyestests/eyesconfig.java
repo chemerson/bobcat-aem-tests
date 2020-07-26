@@ -4,27 +4,31 @@ import com.applitools.eyes.*;
 import com.applitools.eyes.config.Configuration;
 import com.applitools.eyes.selenium.BrowserType;
 import com.applitools.eyes.selenium.Eyes;
-import com.applitools.eyes.visualgrid.model.*;
 import com.applitools.eyes.visualgrid.services.VisualGridRunner;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.util.Random;
+
 public class eyesconfig {
 
+    public static Eyes set(){
 
+        Eyes eyes;
 
-
-    public static Eyes set(Eyes eyes){
+        Random rand = new Random();
+        Integer rnum = rand.nextInt(99999);
 
         EyesRunner runner = new VisualGridRunner(10);
 
         Configuration renderConfig = new Configuration();
 
-        BatchInfo batchInfo = new BatchInfo("Bobcat Demo");
-        batchInfo.setId("AEMBatch13");
+        BatchInfo batchInfo = new BatchInfo("Bobcat Demo 5");
+        batchInfo.setId("AEMBatch" + rnum);
 
         renderConfig
 
                 // 15 browsers
+                /*
                 .addBrowser(new IosDeviceInfo(IosDeviceName.iPhone_7, ScreenOrientation.PORTRAIT))
                 .addBrowser(new IosDeviceInfo(IosDeviceName.iPhone_11_Pro, ScreenOrientation.PORTRAIT))
                 .addBrowser(new IosDeviceInfo(IosDeviceName.iPhone_X, ScreenOrientation.PORTRAIT))
@@ -41,10 +45,13 @@ public class eyesconfig {
                 .addBrowser(1200, 600, BrowserType.FIREFOX)
                 .addBrowser(1200, 600, BrowserType.IE_10)
                 .addBrowser(1200, 600, BrowserType.IE_11)
+                */
+
                 .addBrowser(1200, 600, BrowserType.EDGE_CHROMIUM)
 
                 .setParentBranchName("default")
-                .setBaselineBranchName("AEM Bobcat 5")
+                .setBranchName("AEM Bobcat 6")
+                .setBaselineBranchName("AEM Bobcat 6")
 
                 .setBatch(batchInfo)
 
@@ -59,7 +66,8 @@ public class eyesconfig {
 
         eyes = new Eyes(runner);
 
-        eyes.setLogHandler(new StdoutLogHandler(true));
+        //eyes.setLogHandler(new StdoutLogHandler(true));
+        eyes.setLogHandler(new FileLogger("eyes_bobcat.log",false,true));
 
         eyes.setConfiguration(renderConfig);
 

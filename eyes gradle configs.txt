@@ -1,0 +1,23 @@
+
+1
+compile(group:'com.applitools',name:'eyes-selenium-java3',version:'3.171.0'){
+    exclude group:'org.seleniumhq.selenium',module:'selenium-java'
+    exclude group:'io.appium',module:'java-client'
+    exclude group:'org.seleniumhq.selenium',module:'selenium-api'
+    exclude group:'com.applitools', module:'eyes-connectivity-java3-jersey2x'
+}
+compile group:'com.applitools',name: 'eyes-connectivity-java3-jersey1x', version: '3.171.0'
+
+
+2
+compile group:'com.applitools',name: 'eyes-connectivity-java3-jersey1x', version: '3.171.0'
+compile(group:'com.applitools',name:'eyes-selenium-java3',version:'3.171.0'){
+    exclude group:'com.applitools', module:'eyes-connectivity-java3-jersey2x'
+}
+
+
+3
+compile group:'com.applitools', name:'eyes-selenium-java3', version:'3.171.0'
+
+
+
