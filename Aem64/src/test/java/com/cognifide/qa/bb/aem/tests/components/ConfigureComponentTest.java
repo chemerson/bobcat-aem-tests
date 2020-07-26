@@ -1,8 +1,5 @@
 package com.cognifide.qa.bb.aem.tests.components;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.cognifide.qa.bb.aem.core.api.AemActions;
 import com.cognifide.qa.bb.aem.core.component.actions.ConfigureComponentData;
 import com.cognifide.qa.bb.aem.core.component.configuration.ResourceFileLocation;
@@ -19,11 +16,16 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Modules(BobcatRunModule.class)
 @Epic("AEM 6.4 Base Tests")
 @Feature("TextComponent Tests")
+@Disabled
 public class ConfigureComponentTest extends AbstractAemAuthorTest {
 
   private static final String TEST_PAGE_PATH = "/content/we-retail/us/en/editcomponenttestpage";

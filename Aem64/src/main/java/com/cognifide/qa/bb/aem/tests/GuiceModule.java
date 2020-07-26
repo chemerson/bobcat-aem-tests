@@ -2,7 +2,9 @@ package com.cognifide.qa.bb.aem.tests;
 
 import com.cognifide.qa.bb.aem.tests.pageobjects.TextComponent;
 import com.cognifide.qa.bb.aem.tests.pageobjects.TextComponentImpl;
+import com.cognifide.qa.bb.provider.selenium.webdriver.modifiers.webdriver.WebDriverModifier;
 import com.google.inject.AbstractModule;
+import com.google.inject.multibindings.Multibinder;
 
 /**
  * Your Guice module.
@@ -18,5 +20,8 @@ public class GuiceModule extends AbstractModule {
   @Override
   protected void configure() {
     bind(TextComponent.class).to(TextComponentImpl.class);
+
+    Multibinder<WebDriverModifier> webDriverModifiers = Multibinder.newSetBinder(binder(), WebDriverModifier.class);
+
   }
 }

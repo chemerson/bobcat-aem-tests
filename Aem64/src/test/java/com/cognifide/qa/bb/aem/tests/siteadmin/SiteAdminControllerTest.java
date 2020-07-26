@@ -1,30 +1,29 @@
 package com.cognifide.qa.bb.aem.tests.siteadmin;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import com.cognifide.qa.bb.modules.BobcatRunModule;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
-
 import com.cognifide.qa.bb.aem.core.api.AemActions;
 import com.cognifide.qa.bb.aem.core.pages.sling.SlingPageData;
 import com.cognifide.qa.bb.aem.tests.AbstractAemAuthorTest;
-import com.cognifide.qa.bb.aem.tests.GuiceModule;
 import com.cognifide.qa.bb.aem.tests.pages.SitesPage;
 import com.cognifide.qa.bb.aem.tests.pages.TestPage;
 import com.cognifide.qa.bb.api.actions.ActionException;
 import com.cognifide.qa.bb.junit5.guice.Modules;
+import com.cognifide.qa.bb.modules.BobcatRunModule;
 import com.cognifide.qa.bb.page.BobcatPageFactory;
 import com.google.inject.Inject;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Modules(BobcatRunModule.class)
 @Epic("AEM 6.4 Base Tests")
 @Feature("Site Admin Tests")
+@Disabled
 public class SiteAdminControllerTest extends AbstractAemAuthorTest {
 
   private final static String PAGE_TO_CREATE_NAME = "siteadmintestpage";

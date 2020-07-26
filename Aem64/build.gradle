@@ -14,6 +14,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'io.qameta.allure'
+apply plugin: 'idea'
 
 sourceCompatibility = 1.8
 
@@ -25,6 +26,16 @@ repositories {
 }
 
 dependencies {
+
+
+    compile 'com.applitools:eyes-selenium-java3:+'
+
+    compile (group: 'com.applitools', name: 'eyes-selenium-java3', version: '3.171.0') {
+        exclude group: 'org.seleniumhq.selenium', module: 'delenium-java'
+        exclude group: 'io.appium', module: 'java-cliant'
+        exclude group: 'org.seleniumhq.selenium', module: 'selenium-api'
+    }
+
     compile group: 'com.cognifide.qa.bb', name: 'bb-core', version: bobcatVersion
     compile group: 'com.cognifide.qa.bb', name: 'bb-junit5', version: bobcatVersion
     compile group: 'com.cognifide.qa.bb', name: 'bb-aem-core', version: bobcatVersion
