@@ -1,4 +1,4 @@
-package com.applitools;
+package com.eyestests;
 
 import com.applitools.eyes.*;
 import com.applitools.eyes.config.Configuration;
@@ -20,7 +20,7 @@ public class eyesconfig {
         Configuration renderConfig = new Configuration();
 
         BatchInfo batchInfo = new BatchInfo("Bobcat Demo");
-        batchInfo.setId("AEMBatch12");
+        batchInfo.setId("AEMBatch13");
 
         renderConfig
 
@@ -59,7 +59,7 @@ public class eyesconfig {
 
         eyes = new Eyes(runner);
 
-        // eyes.setLogHandler(new StdoutLogHandler(true));
+        eyes.setLogHandler(new StdoutLogHandler(true));
 
         eyes.setConfiguration(renderConfig);
 

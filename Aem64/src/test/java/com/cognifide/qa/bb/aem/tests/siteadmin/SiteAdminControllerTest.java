@@ -2,7 +2,7 @@ package com.cognifide.qa.bb.aem.tests.siteadmin;
 
 import com.applitools.eyes.selenium.Eyes;
 import com.applitools.eyes.selenium.fluent.Target;
-import com.applitools.eyesconfig;
+import com.eyestests.eyesconfig;
 import com.cognifide.qa.bb.aem.core.api.AemActions;
 import com.cognifide.qa.bb.aem.core.pages.sling.SlingPageData;
 import com.cognifide.qa.bb.aem.tests.AbstractAemAuthorTest;
@@ -50,6 +50,7 @@ public class SiteAdminControllerTest extends AbstractAemAuthorTest {
   @Test
   @Story("Create test page from sites.html")
   @Description("Create test page using create action from site admin")
+  @Disabled
   public void createPageActionTest() throws ActionException {
 
     WebDriver driver = ((EventFiringWebDriver)webDriver).getWrappedDriver();

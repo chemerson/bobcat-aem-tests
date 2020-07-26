@@ -27,13 +27,10 @@ repositories {
 
 dependencies {
 
-
-    compile 'com.applitools:eyes-selenium-java3:+'
-
-    compile (group: 'com.applitools', name: 'eyes-selenium-java3', version: '3.171.0') {
-        exclude group: 'org.seleniumhq.selenium', module: 'delenium-java'
-        exclude group: 'io.appium', module: 'java-cliant'
-        exclude group: 'org.seleniumhq.selenium', module: 'selenium-api'
+    compile(group:'com.applitools',name:'eyes-selenium-java3',version:'3.171.0'){
+        exclude group:'org.seleniumhq.selenium',module:'selenium-java'
+        exclude group:'io.appium',module:'java-client'
+        exclude group:'org.seleniumhq.selenium',module:'selenium-api'
     }
 
     compile group: 'com.cognifide.qa.bb', name: 'bb-core', version: bobcatVersion

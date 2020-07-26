@@ -2,7 +2,7 @@ package com.cognifide.qa.bb.aem.tests.login;
 
 import com.applitools.eyes.selenium.Eyes;
 import com.applitools.eyes.selenium.fluent.Target;
-import com.applitools.eyesconfig;
+import com.eyestests.eyesconfig;
 import com.cognifide.qa.bb.aem.core.api.AemActions;
 import com.cognifide.qa.bb.aem.tests.pages.TestPage;
 import com.cognifide.qa.bb.api.actions.ActionException;
