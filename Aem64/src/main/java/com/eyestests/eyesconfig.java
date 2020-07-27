@@ -61,7 +61,7 @@ public class eyesconfig {
 
                 .setBatch(batchInfo)
 
-                .setApiKey("vJxZ0vRcUghlZQIr5I3XaK2Z6R6qT897KFaJ102kDhv1Co110") //demo 1
+                .setApiKey(System.getenv("APPLITOOLS_API_KEY"))
 
                 .setSendDom(true)
                // .setViewportSize(new RectangleSize(1600, 900))
