@@ -21,3 +21,4 @@ compile group:'com.applitools', name:'eyes-selenium-java3', version:'3.171.0'
 
 
 
+compile 'com.applitools:eyes-selenium-java3:+'

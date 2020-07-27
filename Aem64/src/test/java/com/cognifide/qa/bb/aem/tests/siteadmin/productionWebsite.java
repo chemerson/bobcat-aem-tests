@@ -46,6 +46,9 @@ public class productionWebsite extends AbstractAemAuthorTest {
     ProductionPage prodPage = bobcatPageFactory.create("https://www.pnc.com", ProductionPage.class);
     assertTrue(prodPage.open().isDisplayed());
 
+    eyesconfig.changePageSingle(driver, "Invest", "Spend");
+    eyesconfig.addVerticalSpaceToPage(driver);
+
     eyes.check("Step 1", Target.window().fully());
 
     prodPage.clickIRA();

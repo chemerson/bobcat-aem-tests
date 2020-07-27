@@ -4,7 +4,10 @@ import com.applitools.eyes.*;
 import com.applitools.eyes.config.Configuration;
 import com.applitools.eyes.selenium.BrowserType;
 import com.applitools.eyes.selenium.Eyes;
+import com.applitools.eyes.visualgrid.model.*;
 import com.applitools.eyes.visualgrid.services.VisualGridRunner;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.Random;
@@ -15,20 +18,25 @@ public class eyesconfig {
 
         Eyes eyes;
 
-        Random rand = new Random();
-        Integer rnum = rand.nextInt(99999);
+        String batchId = System.getProperty("EYES_BATCH_ID");
+        if(batchId == null) {
+            Random rand = new Random();
+            Integer rnum = rand.nextInt(99999);
+            batchId = "AEMBatch" + rnum;
+            System.setProperty("EYES_BATCH_ID", batchId);
+        }
 
         EyesRunner runner = new VisualGridRunner(10);
 
         Configuration renderConfig = new Configuration();
 
-        BatchInfo batchInfo = new BatchInfo("Bobcat Demo 5");
-        batchInfo.setId("AEMBatch" + rnum);
+        BatchInfo batchInfo = new BatchInfo("Bobcat Demo");
+        batchInfo.setId(batchId);
+
 
         renderConfig
 
                 // 15 browsers
-                /*
                 .addBrowser(new IosDeviceInfo(IosDeviceName.iPhone_7, ScreenOrientation.PORTRAIT))
                 .addBrowser(new IosDeviceInfo(IosDeviceName.iPhone_11_Pro, ScreenOrientation.PORTRAIT))
                 .addBrowser(new IosDeviceInfo(IosDeviceName.iPhone_X, ScreenOrientation.PORTRAIT))
@@ -45,11 +53,9 @@ public class eyesconfig {
                 .addBrowser(1200, 600, BrowserType.FIREFOX)
                 .addBrowser(1200, 600, BrowserType.IE_10)
                 .addBrowser(1200, 600, BrowserType.IE_11)
-                */
-
                 .addBrowser(1200, 600, BrowserType.EDGE_CHROMIUM)
 
-                .setParentBranchName("default")
+               .setParentBranchName("default")
                 .setBranchName("AEM Bobcat 6")
                 .setBaselineBranchName("AEM Bobcat 6")
 
@@ -58,7 +64,7 @@ public class eyesconfig {
                 .setApiKey("vJxZ0vRcUghlZQIr5I3XaK2Z6R6qT897KFaJ102kDhv1Co110") //demo 1
 
                 .setSendDom(true)
-                .setViewportSize(new RectangleSize(1600, 900))
+               // .setViewportSize(new RectangleSize(1600, 900))
 
                 .setAccessibilityValidation(
                         new AccessibilitySettings(AccessibilityLevel.AAA,
@@ -79,7 +85,7 @@ public class eyesconfig {
 
 
 
-    public void changePageSingle(RemoteWebDriver driver, String from, String to){
+    public static void changePageSingle(WebDriver driver, String from, String to){
 
         String script = "" +
                 "                                    var elements = window.document.querySelectorAll(\"body, body *\");\n" +
@@ -90,28 +96,18 @@ public class eyesconfig {
                 "                                           child.nodeValue = child.nodeValue.replace('" + from +"','" + to + "');" +
                 "                                        }\n" +
                 "                                    }\n";
-        driver.executeScript(script);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript(script);
+
     }
 
-    public void addVerticalSpaceToPage(RemoteWebDriver driver){
-
-        /*
-        String script = "" +
-                "                                    var elements = window.document.querySelectorAll(\"body, body *\");\n" +
-                "                                    var child;\n" +
-                "                                    for(var i = 0; i < elements.length; i++) {\n" +
-                "                                        if(elements[i].nodeName == 'p') {\n" +
-                "                                           elements[i].style.marginTop = '2px';" +
-                "                                        }\n" +
-                "                                    }\n";
-        */
+    public static void addVerticalSpaceToPage(WebDriver driver){
 
         String script = "var elements = document.querySelectorAll('h2'); var child;" +
                 "for(var i = 0; i < elements.length; i++) {elements[i].style.marginTop = '10px'; }";
 
-
-        driver.executeScript(script);
-
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript(script);
     }
 
 }
